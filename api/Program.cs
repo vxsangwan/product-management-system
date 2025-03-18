@@ -25,6 +25,13 @@ app.MapGet("/", () =>
 })
 .WithName("GetHome");
 
+app.MapGet("/{price}/{tax}", (double price, double tax) =>
+{
+    var final = price + (price * tax);
+    return new { price, tax, final };
+})
+.WithName("GetTax");
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
